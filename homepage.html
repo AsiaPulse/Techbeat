@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Asia Pulse Techbeat — Adobe Ultimate Success</title>
+<style>
+  :root {
+    --adobe-red: #EB1000;
+    --adobe-red-dark: #B30B00;
+    --ink: #2C2C2C;
+    --ink-soft: #4B4B4B;
+    --muted: #6E6E6E;
+    --bg: #FBF7F5;
+    --bg-alt: #FFFFFF;
+    --line: #EFE3DF;
+    --chip: #FDECE9;
+    --radius: 16px;
+    --shadow: 0 10px 30px rgba(43, 43, 43, 0.08);
+    --font: "Adobe Clean", "Source Sans Pro", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--font);
+    color: var(--ink);
+    background: var(--bg);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .wrap { max-width: 1120px; margin: 0 auto; padding: 0 28px; }
+
+  /* ---------- Header ---------- */
+  header {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: rgba(251, 247, 245, 0.9);
+    backdrop-filter: saturate(180%) blur(12px);
+    border-bottom: 1px solid var(--line);
+  }
+  .nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 72px;
+  }
+  .brand { display: flex; align-items: center; gap: 14px; }
+  .brand svg { display: block; }
+  .brand-text { display: flex; flex-direction: column; line-height: 1.15; }
+  .brand-name { font-weight: 800; font-size: 18px; letter-spacing: -0.2px; }
+  .brand-sub { font-size: 12px; color: var(--muted); font-weight: 600; letter-spacing: 0.4px; text-transform: uppercase; }
+  nav ul { list-style: none; display: flex; gap: 28px; align-items: center; }
+  nav a {
+    text-decoration: none;
+    color: var(--ink-soft);
+    font-weight: 600;
+    font-size: 15px;
+    transition: color 0.15s ease;
+  }
+  nav a:hover { color: var(--adobe-red); }
+  .cta {
+    background: var(--adobe-red);
+    color: #fff !important;
+    padding: 10px 20px;
+    border-radius: 999px;
+    font-size: 14px;
+    transition: background 0.15s ease, transform 0.15s ease;
+  }
+  .cta:hover { background: var(--adobe-red-dark); transform: translateY(-1px); }
+  .menu-toggle { display: none; }
+
+  /* ---------- Hero ---------- */
+  .hero {
+    position: relative;
+    overflow: hidden;
+    padding: 88px 0 72px;
+    background:
+      radial-gradient(1100px 460px at 82% -10%, rgba(235, 16, 0, 0.10), transparent 60%),
+      radial-gradient(900px 420px at 0% 20%, rgba(235, 16, 0, 0.05), transparent 55%);
+  }
+  .eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--chip);
+    color: var(--adobe-red-dark);
+    font-weight: 700;
+    font-size: 13px;
+    letter-spacing: 0.3px;
+    padding: 7px 14px;
+    border-radius: 999px;
+    margin-bottom: 22px;
+  }
+  .eyebrow .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--adobe-red); }
+  .hero h1 {
+    font-size: clamp(38px, 6vw, 62px);
+    line-height: 1.05;
+    letter-spacing: -1.4px;
+    font-weight: 800;
+    max-width: 16ch;
+  }
+  .hero h1 .accent { color: var(--adobe-red); }
+  .hero p.lead {
+    margin-top: 22px;
+    font-size: clamp(17px, 2.2vw, 21px);
+    color: var(--ink-soft);
+    max-width: 60ch;
+  }
+  .hero-actions { margin-top: 34px; display: flex; gap: 14px; flex-wrap: wrap; }
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 15px;
+    padding: 13px 24px;
+    border-radius: 999px;
+    transition: all 0.15s ease;
+  }
+  .btn-primary { background: var(--adobe-red); color: #fff; }
+  .btn-primary:hover { background: var(--adobe-red-dark); transform: translateY(-1px); }
+  .btn-ghost { background: #fff; color: var(--ink); border: 1px solid var(--line); }
+  .btn-ghost:hover { border-color: var(--adobe-red); color: var(--adobe-red); }
+
+  .hero-stats {
+    margin-top: 56px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    max-width: 640px;
+  }
+  .stat .num { font-size: 34px; font-weight: 800; color: var(--adobe-red); letter-spacing: -0.5px; }
+  .stat .label { font-size: 14px; color: var(--muted); font-weight: 600; }
+
+  /* ---------- Sections ---------- */
+  section.block { padding: 76px 0; }
+  .section-head { max-width: 62ch; margin-bottom: 44px; }
+  .section-head .kicker {
+    color: var(--adobe-red);
+    font-weight: 800;
+    font-size: 13px;
+    letter-spacing: 1.4px;
+    text-transform: uppercase;
+  }
+  .section-head h2 {
+    font-size: clamp(28px, 4vw, 40px);
+    letter-spacing: -0.8px;
+    font-weight: 800;
+    margin-top: 10px;
+  }
+  .section-head p { margin-top: 14px; font-size: 18px; color: var(--ink-soft); }
+
+  /* ---------- Teams ---------- */
+  .teams { background: var(--bg-alt); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+  .team-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+  .team-card {
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 30px 26px;
+    background: linear-gradient(180deg, #fff, #fffaf9);
+    transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
+  }
+  .team-card:hover { transform: translateY(-4px); box-shadow: var(--shadow); border-color: #f3cdc6; }
+  .team-flag {
+    width: 46px; height: 46px; border-radius: 12px;
+    background: var(--chip);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 22px; margin-bottom: 18px;
+  }
+  .team-card h3 { font-size: 21px; font-weight: 800; letter-spacing: -0.3px; }
+  .team-card .region { color: var(--adobe-red); font-weight: 700; font-size: 13px; letter-spacing: 0.4px; text-transform: uppercase; margin-top: 4px; }
+  .team-card p { margin-top: 12px; color: var(--ink-soft); font-size: 15px; }
+
+  /* ---------- Contribution ---------- */
+  .contrib-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+  .contrib-card {
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 28px 24px;
+  }
+  .contrib-card .icon {
+    width: 44px; height: 44px; border-radius: 12px;
+    background: var(--adobe-red);
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 16px;
+  }
+  .contrib-card h3 { font-size: 18px; font-weight: 800; }
+  .contrib-card p { margin-top: 8px; color: var(--ink-soft); font-size: 15px; }
+
+  /* ---------- Cadence banner ---------- */
+  .banner {
+    background: linear-gradient(120deg, var(--adobe-red), var(--adobe-red-dark));
+    color: #fff;
+    border-radius: 22px;
+    padding: 48px 44px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 30px;
+    flex-wrap: wrap;
+    box-shadow: 0 20px 45px rgba(235, 16, 0, 0.22);
+  }
+  .banner h2 { font-size: clamp(24px, 3.4vw, 34px); letter-spacing: -0.6px; font-weight: 800; max-width: 20ch; }
+  .banner p { margin-top: 10px; opacity: 0.92; font-size: 17px; max-width: 46ch; }
+  .banner .btn-white { background: #fff; color: var(--adobe-red); }
+  .banner .btn-white:hover { transform: translateY(-1px); background: #fff5f4; }
+
+  /* ---------- Footer ---------- */
+  footer { padding: 48px 0 40px; border-top: 1px solid var(--line); background: var(--bg-alt); }
+  .foot { display: flex; justify-content: space-between; align-items: center; gap: 20px; flex-wrap: wrap; }
+  .foot .brand-name { font-size: 16px; }
+  .foot p { color: var(--muted); font-size: 14px; }
+  .foot-links { display: flex; gap: 22px; }
+  .foot-links a { color: var(--ink-soft); text-decoration: none; font-size: 14px; font-weight: 600; }
+  .foot-links a:hover { color: var(--adobe-red); }
+
+  @media (max-width: 860px) {
+    nav ul { display: none; }
+    .hero-stats { grid-template-columns: 1fr; max-width: 340px; gap: 26px; }
+    .team-grid, .contrib-grid { grid-template-columns: 1fr; }
+    .banner { flex-direction: column; align-items: flex-start; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ===== Header ===== -->
+<header>
+  <div class="wrap nav">
+    <div class="brand">
+      <!-- Adobe corporate mark -->
+      <svg width="42" height="38" viewBox="0 0 42 38" role="img" aria-label="Adobe logo">
+        <rect width="42" height="38" rx="7" fill="#EB1000"/>
+        <path d="M23.6 8.5H33L33 29.5H29L23.6 8.5Z" fill="#fff"/>
+        <path d="M18.4 8.5H9L9 29.5H13L18.4 8.5Z" fill="#fff"/>
+        <path d="M21 16.2L24.2 24.1H17.8L21 16.2Z" fill="#fff"/>
+      </svg>
+      <div class="brand-text">
+        <span class="brand-name">Asia Pulse Techbeat</span>
+        <span class="brand-sub">Adobe · Ultimate Success</span>
+      </div>
+    </div>
+    <nav>
+      <ul>
+        <li><a href="#about">About</a></li>
+        <li><a href="#teams">Who We Serve</a></li>
+        <li><a href="#contribute">What We Deliver</a></li>
+        <li><a href="#subscribe" class="cta">Subscribe</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<!-- ===== Hero ===== -->
+<section class="hero">
+  <div class="wrap">
+    <span class="eyebrow"><span class="dot"></span> Your weekly tech pulse across Asia</span>
+    <h1>The tech news digest powering <span class="accent">Asia Ultimate Success</span>.</h1>
+    <p class="lead">
+      Asia Pulse Techbeat is the go-to briefing that keeps Adobe's Asia Ultimate Success
+      community sharp — curating the product news, industry moves, and technology trends
+      that matter most to our customers and our craft.
+    </p>
+    <div class="hero-actions">
+      <a href="#subscribe" class="btn btn-primary">Subscribe to the digest →</a>
+      <a href="#about" class="btn btn-ghost">Learn more</a>
+    </div>
+
+    <div class="hero-stats">
+      <div class="stat">
+        <div class="num">3</div>
+        <div class="label">Sub-regions served</div>
+      </div>
+      <div class="stat">
+        <div class="num">Weekly</div>
+        <div class="label">Curated cadence</div>
+      </div>
+      <div class="stat">
+        <div class="num">1</div>
+        <div class="label">Shared pulse for Asia</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== About ===== -->
+<section class="block" id="about">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="kicker">About the Pulse</span>
+      <h2>One digest, curated for the people driving customer success in Asia.</h2>
+      <p>
+        Every edition distills the fast-moving world of technology into a signal-rich brief:
+        Adobe product and platform updates, competitive and market intelligence, AI and cloud
+        developments, and the customer stories shaping our region. It's built to be read in
+        minutes and remembered in conversations with customers.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Teams ===== -->
+<section class="block teams" id="teams">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="kicker">Who we serve</span>
+      <h2>Contributing to the Asia Ultimate Success teams.</h2>
+      <p>
+        Asia Pulse Techbeat is written for — and contributes directly to — the three Ultimate
+        Success sub-regions that make up Adobe's Asia practice.
+      </p>
+    </div>
+    <div class="team-grid">
+      <div class="team-card">
+        <div class="team-flag">🌏</div>
+        <h3>SEA</h3>
+        <div class="region">Southeast Asia</div>
+        <p>
+          Serving the diverse, high-growth markets across Southeast Asia with intelligence
+          tuned to regional customer priorities and digital acceleration.
+        </p>
+      </div>
+      <div class="team-card">
+        <div class="team-flag">🇰🇷</div>
+        <h3>Korea</h3>
+        <div class="region">Korea</div>
+        <p>
+          Keeping the Korea team ahead of a fast, innovation-led market — from platform
+          adoption trends to the technologies reshaping the customer landscape.
+        </p>
+      </div>
+      <div class="team-card">
+        <div class="team-flag">🀄</div>
+        <h3>GCR</h3>
+        <div class="region">Greater China Region</div>
+        <p>
+          Delivering the Greater China Region a curated view of the trends, platforms, and
+          product moves most relevant to its customers and stakeholders.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Contribution ===== -->
+<section class="block" id="contribute">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="kicker">What we deliver</span>
+      <h2>How the Pulse fuels Ultimate Success.</h2>
+    </div>
+    <div class="contrib-grid">
+      <div class="contrib-card">
+        <div class="icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M3 13h4l3 7 4-16 3 9h4" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <h3>Market signal, not noise</h3>
+        <p>Curated tech and industry news so teams spend time acting on insight, not hunting for it.</p>
+      </div>
+      <div class="contrib-card">
+        <div class="icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 3l2.5 5.5L20 9l-4 4 1 6-5-3-5 3 1-6-4-4 5.5-.5L12 3z" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <h3>Customer-ready talking points</h3>
+        <p>Context that sharpens conversations and helps every team show up as a trusted advisor.</p>
+      </div>
+      <div class="contrib-card">
+        <div class="icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2M9 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <h3>One shared pulse for Asia</h3>
+        <p>A common view across SEA, Korea, and GCR that connects the region around what matters now.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Banner / Subscribe ===== -->
+<section class="block" id="subscribe">
+  <div class="wrap">
+    <div class="banner">
+      <div>
+        <h2>Get the Techbeat in your inbox.</h2>
+        <p>Join the SEA, Korea, and GCR teams who start their week with Asia Pulse Techbeat.</p>
+      </div>
+      <a href="mailto:hermanng@adobe.com?subject=Subscribe%20to%20Asia%20Pulse%20Techbeat" class="btn btn-white">Subscribe now →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Footer ===== -->
+<footer>
+  <div class="wrap foot">
+    <div class="brand">
+      <svg width="34" height="31" viewBox="0 0 42 38" role="img" aria-label="Adobe logo">
+        <rect width="42" height="38" rx="7" fill="#EB1000"/>
+        <path d="M23.6 8.5H33L33 29.5H29L23.6 8.5Z" fill="#fff"/>
+        <path d="M18.4 8.5H9L9 29.5H13L18.4 8.5Z" fill="#fff"/>
+        <path d="M21 16.2L24.2 24.1H17.8L21 16.2Z" fill="#fff"/>
+      </svg>
+      <div class="brand-text">
+        <span class="brand-name">Asia Pulse Techbeat</span>
+        <p>Contributing to Adobe Asia Ultimate Success · SEA · Korea · GCR</p>
+      </div>
+    </div>
+    <div class="foot-links">
+      <a href="#about">About</a>
+      <a href="#teams">Who We Serve</a>
+      <a href="#subscribe">Subscribe</a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
